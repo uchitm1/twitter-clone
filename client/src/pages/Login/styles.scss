@@ -1,0 +1,81 @@
+$primary-color: #1da1f2;
+$primary-color-light: #bfe2fc;
+
+.login {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 10vh auto;
+	padding: 2rem 0.5rem;
+	border: 1px solid whitesmoke;
+	border-radius: 5px;
+	width: 30vw;
+	min-width: 400px;
+
+	svg {
+		color: $primary-color;
+	}
+	h1 {
+		font-size: 1.8rem;
+	}
+
+	form {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		.email,
+		.password {
+			width: 80%;
+			@mixin inputField {
+				display: block;
+				width: 100%;
+				border: 1px solid lightgrey;
+				margin-top: 0.3rem;
+				margin-bottom: 0.5rem;
+				padding: 1rem;
+				box-sizing: border-box;
+				font-size: 1.1rem;
+				border-radius: 3px;
+				color: grey;
+				outline-color: $primary-color;
+			}
+
+			label {
+				font-size: 0.9rem;
+				color: $primary-color;
+			}
+
+			input {
+				@include inputField;
+			}
+		}
+
+		button {
+			width: 80%;
+			border: none;
+			padding: 1rem;
+			margin-top: 1rem;
+			font-size: 1rem;
+			font-weight: bold;
+			border-radius: 50px;
+			background-color: $primary-color-light;
+			color: white;
+		}
+
+		.active {
+			background-color: $primary-color;
+			color: white;
+			cursor: pointer;
+		}
+	}
+	a {
+		text-decoration: none;
+	}
+	.signupLink {
+		margin-bottom: 0;
+		color: $primary-color;
+	}
+}

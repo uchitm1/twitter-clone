@@ -1,0 +1,97 @@
+$primary-color: #1da1f2;
+$primary-color-light: #bfe2fc;
+$hover-color: #e0f2ff;
+$retweet-color: rgb(29, 211, 29);
+$like-color: rgb(255, 0, 106);
+$retweet-hover-color: rgb(226, 253, 226);
+$like-hover-color: rgb(255, 226, 239);
+
+.tweet {
+	display: flex;
+	border-bottom: 1px solid whitesmoke;
+
+	img {
+		border-radius: 50px;
+		margin: 0.8rem 1.2rem;
+	}
+	.tweetInfo {
+		flex: 1;
+		padding: 1rem 0.2rem 0.2rem;
+		p {
+			margin: 0;
+		}
+		.userInfo {
+			color: grey;
+			margin-bottom: 5px;
+			span {
+				color: black;
+				font-weight: bold;
+				margin-right: 0.5rem;
+			}
+		}
+		.tweetContent {
+			margin-bottom: 0.5rem;
+		}
+		.tweetOptionsIcons {
+			display: flex;
+			align-items: center;
+			color: grey;
+			.retweets,
+			.replies,
+			.likes,
+			.shares {
+				display: flex;
+				align-items: center;
+				flex: 1;
+				svg,
+				p {
+					margin: 0;
+					margin-right: 0.5rem;
+					font-size: 0.8rem;
+				}
+			}
+			.replies:hover {
+				color: $primary-color;
+				svg {
+					background-color: $hover-color;
+				}
+			}
+			.retweets:hover {
+				color: $retweet-color;
+				svg {
+					background-color: $retweet-hover-color;
+				}
+			}
+			.likes:hover {
+				color: $like-color;
+				svg {
+					background-color: $like-hover-color;
+				}
+			}
+			.shares:hover {
+				color: $primary-color;
+				svg {
+					background-color: $hover-color;
+				}
+			}
+		}
+	}
+	svg {
+		margin-top: 0.4rem;
+		margin-right: 0.7rem;
+		padding: 0.5rem;
+		border-radius: 50px;
+		cursor: pointer;
+	}
+	.moreOptions {
+		color: grey;
+	}
+	.moreOptions:hover {
+		color: $primary-color;
+		background-color: $hover-color;
+	}
+}
+.tweet:hover {
+	background-color: rgb(250, 250, 250);
+	cursor: pointer;
+}

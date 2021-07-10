@@ -1,0 +1,12 @@
+.home {
+	display: flex;
+	.sidebar {
+		position: fixed;
+		width: 25%;
+	}
+	.feed {
+		position: absolute;
+		left: 25%;
+		width: 45%;
+	}
+}
