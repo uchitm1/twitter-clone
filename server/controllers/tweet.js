@@ -18,7 +18,7 @@ const createTweet = async (req, res) => {
 };
 
 const fetchAllTweets = async (req, res) => {
-	const tweets = await Tweet.find({});
+	const tweets = await Tweet.find({}).sort({ updatedAt: -1 });
 	return res.status(200).json({
 		success: true,
 		tweets,

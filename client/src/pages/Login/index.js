@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import apis from "../../api";
 import * as Routes from "../../constants/routes";
 import "./styles.scss";
 import { FaTwitter } from "react-icons/fa";
+import { UserContext } from "../../contexts/user";
 
 function Login() {
 	const history = useHistory();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const { currentUser } = useContext(UserContext);
 
 	const isInvalid = email === "" || password === "";
 

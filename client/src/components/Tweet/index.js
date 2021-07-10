@@ -3,14 +3,25 @@ import "./styles.scss";
 import { AiOutlineRetweet, AiOutlineHeart } from "react-icons/ai";
 import { FiMessageSquare, FiUpload } from "react-icons/fi";
 import { CgMoreAlt } from "react-icons/cg";
+import { formatDistanceToNowStrict } from "date-fns";
 
 function Tweet(props) {
 	return (
 		<div className="tweet">
-			<img src="" alt="profile-pic" width={50} height={50} />
+			<img
+				src={
+					props.tweet.user.imageUrl
+						? props.tweet.user.imageUrl
+						: "/assets/default-dp.jpg"
+				}
+				alt="profile-pic"
+				width={50}
+				height={50}
+			/>
 			<div className="tweetInfo">
 				<p className="userInfo">
-					<span>{props.tweet.user.fullName}</span>@{props.tweet.user.username}
+					<span>{props.tweet.user.fullName}</span>@{props.tweet.user.username} ·{" "}
+					{formatDistanceToNowStrict(new Date(props.tweet.updatedAt))}
 				</p>
 				<p className="tweetContent">{props.tweet.content}</p>
 				<div className="tweetOptionsIcons">

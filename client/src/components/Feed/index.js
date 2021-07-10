@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./styles.scss";
 import apis from "../../api";
 import Tweet from "../Tweet";
@@ -10,28 +10,19 @@ import {
 } from "react-icons/ai";
 import { BiPoll } from "react-icons/bi";
 import { GrEmoji } from "react-icons/gr";
+import { UserContext } from "../../contexts/user";
 
 function Feed() {
 	const [tweet, setTweet] = useState("");
 	const [allTweets, setAllTweets] = useState([]);
-	const [loggedInUser, setLoggedInUser] = useState({});
+	const { loggedInUser } = useContext(UserContext);
 
 	const isInvalid = tweet === "";
-
-	const currentUser = async () => {
-		await apis
-			.getLoggedInUser()
-			.then((res) => {
-				setLoggedInUser(res.data.user);
-			})
-			.catch((err) => console.error(err.response.data));
-	};
 
 	const getAllTweets = async () => {
 		await apis
 			.fetchAllTweets()
 			.then((res) => {
-				console.log(res.data.tweets);
 				setAllTweets(res.data.tweets);
 			})
 			.catch((err) => console.error(err.message));
@@ -44,15 +35,15 @@ function Feed() {
 		};
 		await apis
 			.createTweet(tweetInfo)
-			.then((res) => {
+			.then(() => {
 				setTweet("");
+				getAllTweets();
 			})
 			.catch((err) => console.error(err.response));
 	};
 
 	useEffect(() => {
 		document.title = "Home / Twitter";
-		currentUser();
 		getAllTweets();
 	}, []);
 
@@ -63,7 +54,16 @@ function Feed() {
 				<HiOutlineSparkles size={23} />
 			</div>
 			<div className="createTweet">
-				<img src="" alt="profile-pic" width={50} height={50} />
+				<img
+					src={
+						loggedInUser.imageUrl
+							? loggedInUser.imageUrl
+							: "/assets/default-dp.jpg"
+					}
+					alt="profile-pic"
+					width={50}
+					height={50}
+				/>
 				<div className="tweetInputField">
 					<textarea
 						value={tweet}

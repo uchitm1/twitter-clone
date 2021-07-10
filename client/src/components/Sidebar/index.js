@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./styles.scss";
 import {
@@ -12,27 +12,20 @@ import { CgMoreO, CgMoreAlt } from "react-icons/cg";
 import { IoPerson } from "react-icons/io5";
 import apis from "../../api";
 import * as Routes from "../../constants/routes";
+import { UserContext } from "../../contexts/user";
 
 function Sidebar() {
 	const history = useHistory();
-	const [loggedInUser, setLoggedInUser] = useState({});
+	const { loggedInUser, currentUser, removeUserFromContext } =
+		useContext(UserContext);
 	const [showLogout, setShowLogout] = useState(false);
-
-	const currentUser = async () => {
-		await apis
-			.getLoggedInUser()
-			.then((res) => {
-				setLoggedInUser(res.data.user);
-			})
-			.catch((err) => console.error(err.response.data));
-	};
 
 	const handleLogout = async () => {
 		await apis
 			.logoutUser()
-			.then((res) => {
-				console.log(res);
+			.then(() => {
 				history.push(Routes.LOGIN);
+				removeUserFromContext();
 			})
 			.catch((err) => console.error(err));
 	};
@@ -80,7 +73,16 @@ function Sidebar() {
 				<p>Log out @{loggedInUser.username}</p>
 			</div>
 			<div className="profile" onClick={() => setShowLogout((state) => !state)}>
-				<img src="" alt="profile-pic" width={40} height={40} />
+				<img
+					src={
+						loggedInUser.imageUrl
+							? loggedInUser.imageUrl
+							: "/assets/default-dp.jpg"
+					}
+					alt="profile-pic"
+					width={40}
+					height={40}
+				/>
 				<div className="userDetails">
 					<p className="fullName">{loggedInUser.fullName}</p>
 					<p className="username">@{loggedInUser.username}</p>

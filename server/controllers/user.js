@@ -19,7 +19,7 @@ const createUser = async (req, res) => {
 		fullName: body.fullName,
 	});
 	await newUser.save().then(() => {
-		req.session.userId = accountExists._id;
+		req.session.userId = newUser._id;
 		return res.status(201).json({
 			success: true,
 			id: newUser._id,
