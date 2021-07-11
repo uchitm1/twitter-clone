@@ -1,0 +1,48 @@
+$hover-color: rgb(240, 240, 240);
+
+.whatsHappening {
+	width: 80%;
+	margin-top: 1rem;
+	background-color: whitesmoke;
+	border-radius: 20px;
+
+	.header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border-bottom: 1px solid whitesmoke;
+		padding: 0 1.5rem;
+		p {
+			margin: 0;
+			padding: 1rem 0;
+			font-size: 1.25rem;
+			font-weight: 800;
+		}
+	}
+	.mainContent {
+		display: flex;
+		flex-direction: column;
+
+		.content1,
+		.content2,
+		.content3 {
+			border-top: 1px solid $hover-color;
+			cursor: pointer;
+			padding: 0 1.5rem;
+			.topic,
+			.tags {
+				color: grey;
+				font-size: 0.8rem;
+			}
+			.body {
+				font-weight: bold;
+				margin: 0;
+			}
+		}
+		.content1:hover,
+		.content2:hover,
+		.content3:hover {
+			background-color: $hover-color;
+		}
+	}
+}

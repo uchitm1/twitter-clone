@@ -1,6 +1,8 @@
 import React from "react";
 import Feed from "../../components/Feed";
+import SearchBar from "../../components/SearchBar";
 import Sidebar from "../../components/Sidebar";
+import WhatsHappening from "../../components/WhatsHappening";
 import "./styles.scss";
 
 function Home() {
@@ -8,6 +10,10 @@ function Home() {
 		<div className="home">
 			<Sidebar />
 			<Feed />
+			<div className="rightSection">
+				<SearchBar />
+				<WhatsHappening />
+			</div>
 		</div>
 	);
 }
