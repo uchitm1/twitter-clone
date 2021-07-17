@@ -5,7 +5,11 @@ const {
 	currentUser,
 	logoutUser,
 } = require("../controllers/user");
-const { createTweet, fetchAllTweets } = require("../controllers/tweet");
+const {
+	createTweet,
+	fetchAllTweets,
+	fetchTweetsBySearchedUsername,
+} = require("../controllers/tweet");
 
 router.post("/user/register", async (req, res) => {
 	try {
@@ -68,6 +72,18 @@ router.get("/tweets", async (req, res) => {
 	} catch (err) {
 		return res.status(400).json({
 			errors: { body: "Could not fetch all tweets. " + err.message },
+		});
+	}
+});
+
+router.get("/tweets/search", async (req, res) => {
+	try {
+		await fetchTweetsBySearchedUsername(req, res);
+	} catch (err) {
+		return res.status(400).json({
+			errors: {
+				body: "Could not fetch tweets by requested username. " + err.message,
+			},
 		});
 	}
 });

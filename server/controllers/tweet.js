@@ -26,4 +26,16 @@ const fetchAllTweets = async (req, res) => {
 	});
 };
 
-module.exports = { createTweet, fetchAllTweets };
+const fetchTweetsBySearchedUsername = async (req, res) => {
+	const searchedUsername = req.query.q;
+	const tweets = await Tweet.find({
+		"user.username": new RegExp(searchedUsername),
+	});
+	return res.status(200).json({
+		success: true,
+		tweets,
+		message: "Fetched tweets successfully.",
+	});
+};
+
+module.exports = { createTweet, fetchAllTweets, fetchTweetsBySearchedUsername };
