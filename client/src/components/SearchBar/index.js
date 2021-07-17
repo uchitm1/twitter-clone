@@ -8,7 +8,7 @@ function SearchBar() {
 	const history = useHistory();
 
 	const handleSubmit = (e) => {
-		if (e.keyCode === 13) {
+		if (searchText.length !== 0 && e.keyCode === 13) {
 			history.push({
 				pathname: Routes.SEARCH,
 				search: `?q=${searchText}`,

@@ -43,7 +43,16 @@ function Profile() {
 				</div>
 			</div>
 			<div className="cover_image"></div>
-			<div className="profile_picture"></div>
+			<div className="profile_picture">
+				<img
+					src={
+						loggedInUser.imageUrl
+							? loggedInUser.imageUrl
+							: "/assets/default-dp.jpg"
+					}
+					alt="profile-pic"
+				/>
+			</div>
 			<div className="edit_profile_button">
 				<button>Edit Profile</button>
 			</div>

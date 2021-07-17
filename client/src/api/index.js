@@ -33,8 +33,8 @@ const fetchTweetsByUsername = (username) => {
 	return api.get(`/tweets/${username}`);
 };
 
-const fetchTweetsBySearchedUsername = (searchedTerm) => {
-	return api.get("/tweets/search", {
+const fetchSearchResults = (searchedTerm) => {
+	return api.get("/search", {
 		params: {
 			q: searchedTerm,
 		},
@@ -49,7 +49,7 @@ const apis = {
 	createTweet,
 	fetchAllTweets,
 	fetchTweetsByUsername,
-	fetchTweetsBySearchedUsername,
+	fetchSearchResults,
 };
 
 export default apis;
