@@ -26,6 +26,18 @@ const fetchAllTweets = async (req, res) => {
 	});
 };
 
+const fetchTweetsByUsername = async (req, res) => {
+	const username = req.params.username;
+	const tweets = await Tweet.find({
+		"user.username": username,
+	});
+	return res.status(200).json({
+		success: true,
+		tweets,
+		message: "Fetched tweets successfully.",
+	});
+};
+
 const fetchTweetsBySearchedUsername = async (req, res) => {
 	const searchedUsername = req.query.q;
 	const tweets = await Tweet.find({
@@ -38,4 +50,9 @@ const fetchTweetsBySearchedUsername = async (req, res) => {
 	});
 };
 
-module.exports = { createTweet, fetchAllTweets, fetchTweetsBySearchedUsername };
+module.exports = {
+	createTweet,
+	fetchAllTweets,
+	fetchTweetsByUsername,
+	fetchTweetsBySearchedUsername,
+};

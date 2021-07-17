@@ -9,6 +9,7 @@ const {
 	createTweet,
 	fetchAllTweets,
 	fetchTweetsBySearchedUsername,
+	fetchTweetsByUsername,
 } = require("../controllers/tweet");
 
 router.post("/user/register", async (req, res) => {
@@ -79,6 +80,18 @@ router.get("/tweets", async (req, res) => {
 router.get("/tweets/search", async (req, res) => {
 	try {
 		await fetchTweetsBySearchedUsername(req, res);
+	} catch (err) {
+		return res.status(400).json({
+			errors: {
+				body: "Could not fetch tweets by requested username. " + err.message,
+			},
+		});
+	}
+});
+
+router.get("/tweets/:username", async (req, res) => {
+	try {
+		await fetchTweetsByUsername(req, res);
 	} catch (err) {
 		return res.status(400).json({
 			errors: {
