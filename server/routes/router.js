@@ -8,7 +8,7 @@ const {
 const {
 	createTweet,
 	fetchAllTweets,
-	fetchTweetsBySearchedUsername,
+	fetchSearchResults,
 	fetchTweetsByUsername,
 } = require("../controllers/tweet");
 
@@ -77,9 +77,9 @@ router.get("/tweets", async (req, res) => {
 	}
 });
 
-router.get("/tweets/search", async (req, res) => {
+router.get("/search", async (req, res) => {
 	try {
-		await fetchTweetsBySearchedUsername(req, res);
+		await fetchSearchResults(req, res);
 	} catch (err) {
 		return res.status(400).json({
 			errors: {
