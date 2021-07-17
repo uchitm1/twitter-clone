@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./styles.scss";
 import {
 	FaHome,
@@ -38,31 +38,49 @@ function Sidebar() {
 		<div className="sidebar">
 			<ul>
 				<li>
-					<FaTwitter size={40} />
+					<Link to={Routes.HOME}>
+						<FaTwitter size={40} />
+					</Link>
 				</li>
 				<li>
-					<FaHome size={25} />
-					<span>Home</span>
+					<Link to={Routes.HOME}>
+						<FaHome size={25} />
+						<span>Home</span>
+					</Link>
 				</li>
 				<li>
-					<FaHashtag size={25} />
-					<span>Explore</span>
+					<Link to={Routes.EXPLORE}>
+						<FaHashtag size={25} />
+						<span>Explore</span>
+					</Link>
 				</li>
 				<li>
-					<FaBell size={25} />
-					<span>Notifications</span>
+					<Link to={Routes.NOTIFICATIONS}>
+						<FaBell size={25} />
+						<span>Notifications</span>
+					</Link>
 				</li>
 				<li>
-					<FaEnvelope size={25} />
-					<span>Messages</span>
+					<Link to={Routes.MESSAGES}>
+						<FaEnvelope size={25} />
+						<span>Messages</span>
+					</Link>
 				</li>
 				<li>
-					<IoPerson size={25} />
-					<span>Profile</span>
+					<Link
+						to={{
+							pathname: `/${loggedInUser.username}`,
+						}}
+					>
+						<IoPerson size={25} />
+						<span>Profile</span>
+					</Link>
 				</li>
 				<li>
-					<CgMoreO size={25} />
-					<span>More</span>
+					<Link to={Routes.DEFAULT}>
+						<CgMoreO size={25} />
+						<span>More</span>
+					</Link>
 				</li>
 			</ul>
 			<button>Tweet</button>
@@ -72,7 +90,10 @@ function Sidebar() {
 			>
 				<p>Log out @{loggedInUser.username}</p>
 			</div>
-			<div className="profile" onClick={() => setShowLogout((state) => !state)}>
+			<div
+				className="userInfo"
+				onClick={() => setShowLogout((state) => !state)}
+			>
 				<img
 					src={
 						loggedInUser.imageUrl

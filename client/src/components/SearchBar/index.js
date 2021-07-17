@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import * as Routes from "../../constants/routes";
 import "./styles.scss";
 
 function SearchBar() {
@@ -9,7 +10,7 @@ function SearchBar() {
 	const handleSubmit = (e) => {
 		if (e.keyCode === 13) {
 			history.push({
-				pathname: "/search",
+				pathname: Routes.SEARCH,
 				search: `?q=${searchText}`,
 			});
 		}

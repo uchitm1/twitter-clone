@@ -3,3 +3,7 @@ export const HOME = "/home";
 export const LOGIN = "/login";
 export const REGISTER = "/register";
 export const SEARCH = "/search";
+export const EXPLORE = "/explore";
+export const NOTIFICATIONS = "/notifications";
+export const MESSAGES = "/messages";
+export const PROFILE = "/:fullName";

@@ -12,7 +12,7 @@ $hover-color: #eef8ff;
 		list-style-type: none;
 		padding: 0 2rem;
 
-		li:first-child {
+		li:first-child > a {
 			width: fit-content;
 			color: $primary-color;
 			padding: 0.8rem;
@@ -21,12 +21,14 @@ $hover-color: #eef8ff;
 			cursor: pointer;
 		}
 
-		li {
+		a {
 			display: flex;
 			align-items: center;
 			padding: 0.8rem 2rem;
 			border-radius: 50px;
 			cursor: pointer;
+			text-decoration: none;
+			color: black;
 
 			span {
 				margin-left: 1rem;
@@ -34,7 +36,7 @@ $hover-color: #eef8ff;
 				font-weight: bold;
 			}
 		}
-		li:hover {
+		a:hover {
 			color: $primary-color;
 			background-color: $hover-color;
 		}
@@ -56,7 +58,7 @@ $hover-color: #eef8ff;
 		background-color: $primary-color-dark;
 	}
 
-	.profile {
+	.userInfo {
 		display: flex;
 		width: calc(80% - 2rem);
 		padding: 0 1rem;
@@ -83,7 +85,7 @@ $hover-color: #eef8ff;
 			margin: 0;
 		}
 	}
-	.profile:hover {
+	.userInfo:hover {
 		background-color: $hover-color;
 		border-radius: 50px;
 		cursor: pointer;

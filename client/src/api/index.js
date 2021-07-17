@@ -29,6 +29,10 @@ const fetchAllTweets = () => {
 	return api.get("/tweets");
 };
 
+const fetchTweetsByUsername = (username) => {
+	return api.get(`/tweets/${username}`);
+};
+
 const fetchTweetsBySearchedUsername = (searchedTerm) => {
 	return api.get("/tweets/search", {
 		params: {
@@ -44,6 +48,7 @@ const apis = {
 	logoutUser,
 	createTweet,
 	fetchAllTweets,
+	fetchTweetsByUsername,
 	fetchTweetsBySearchedUsername,
 };
 

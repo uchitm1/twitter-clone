@@ -17,6 +17,8 @@ function App() {
 					<Suspense fallback={<Loader />}>
 						<Switch>
 							<Route exact path={Routes.DEFAULT} component={Landing} />
+							<Route exact path={Routes.LOGIN} component={Login} />
+							<Route exact path={Routes.REGISTER} component={Register} />
 							<Route
 								exact
 								path={Routes.HOME}
@@ -26,8 +28,11 @@ function App() {
 								path={Routes.SEARCH}
 								component={() => <MainLayout showSearchResults />}
 							/>
-							<Route exact path={Routes.LOGIN} component={Login} />
-							<Route exact path={Routes.REGISTER} component={Register} />
+							<Route
+								exact
+								path={Routes.PROFILE}
+								component={() => <MainLayout showProfile />}
+							/>
 						</Switch>
 					</Suspense>
 				</Router>

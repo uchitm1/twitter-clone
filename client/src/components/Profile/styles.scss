@@ -1,0 +1,142 @@
+$primary-color: #1da1f2;
+$primary-color-light: #bfe2fc;
+$hover-color: #eef8ff;
+$secondary-text-color: gray;
+
+.profile {
+	display: flex;
+	flex-direction: column;
+	border-right: 1px solid whitesmoke;
+
+	.header {
+		display: flex;
+		align-items: center;
+		border-bottom: 1px solid whitesmoke;
+		padding: 0 1rem;
+		svg {
+			color: $primary-color;
+			padding: 0.5rem;
+			border-radius: 50px;
+			cursor: pointer;
+		}
+		svg:hover {
+			background-color: $hover-color;
+		}
+		div {
+			padding: 0.3rem 1.2rem;
+			p {
+				margin: 0;
+				font-size: 1.25rem;
+				font-weight: 800;
+			}
+			.no_of_tweets {
+				font-size: 0.8rem;
+				font-weight: normal;
+				color: $secondary-text-color;
+			}
+		}
+	}
+	.cover_image {
+		background-color: rgb(209, 209, 209);
+		height: 30vh;
+	}
+	.profile_picture {
+		position: absolute;
+		margin: 0 1rem;
+		top: calc(20vh + 1.6rem + 1.25rem);
+		background-color: rgb(255, 108, 55);
+		border: 5px solid white;
+		border-radius: 500px;
+		width: 20vh;
+		height: 20vh;
+	}
+	.edit_profile_button {
+		display: flex;
+		justify-content: flex-end;
+		margin: 1rem;
+		button {
+			padding: 1rem 2rem;
+			border: 1px solid $primary-color;
+			color: $primary-color;
+			padding: 0.7rem 1rem;
+			font-size: 0.95rem;
+			font-weight: bold;
+			border-radius: 50px;
+			background-color: white;
+			cursor: pointer;
+		}
+		button:hover {
+			background-color: $hover-color;
+		}
+	}
+	.about_user_section {
+		padding: 0 1rem 1rem;
+		p {
+			margin: 0;
+		}
+		.user_fullname {
+			font-size: 1.25rem;
+			font-weight: 800;
+		}
+		.user_username {
+			color: $secondary-text-color;
+		}
+		.user_location_dob_joined {
+			display: flex;
+			align-items: center;
+			color: $secondary-text-color;
+			.user_location,
+			.user_birthday,
+			.user_joining_date {
+				display: flex;
+				align-items: center;
+				margin: 1rem 1rem 1rem 0;
+				p {
+					padding-left: 0.3rem;
+				}
+			}
+			svg {
+				color: $secondary-text-color;
+			}
+		}
+		.following_followers {
+			display: flex;
+			.following,
+			.followers {
+				margin-right: 1rem;
+				color: $secondary-text-color;
+				span {
+					color: black;
+					font-weight: bold;
+					font-size: 0.95rem;
+				}
+			}
+		}
+	}
+
+	.navbar_items {
+		display: flex;
+		list-style-type: none;
+		justify-content: space-around;
+		padding: 0;
+		margin: 0;
+		border-bottom: 1px solid whitesmoke;
+
+		li {
+			flex: 1;
+			text-align: center;
+			font-weight: bold;
+			cursor: pointer;
+			padding: 1rem 0;
+			color: $secondary-text-color;
+		}
+		li:hover {
+			color: $primary-color;
+			background-color: $hover-color;
+		}
+		.active {
+			color: $primary-color;
+			border-bottom: 5px solid $primary-color;
+		}
+	}
+}

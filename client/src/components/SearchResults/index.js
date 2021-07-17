@@ -17,9 +17,9 @@ function SearchResults(props) {
 		getSearchResults();
 	}, [searchedUsername]);
 	return (
-		<div className="searchResults">
+		<div className="search_results">
 			<div className="navbar">
-				<ul className="navbar-items">
+				<ul className="navbar_items">
 					<li className="active">Top</li>
 					<li>Latest</li>
 					<li>People</li>
@@ -27,13 +27,13 @@ function SearchResults(props) {
 					<li>Videos</li>
 				</ul>
 			</div>
-			<div className="emptySpace"></div>
+			<div className="empty_space"></div>
 			{tweetsBySearchedUsername.length > 0 ? (
 				tweetsBySearchedUsername.map((tweet) => (
 					<Tweet key={tweet._id} tweet={tweet} />
 				))
 			) : (
-				<div className="noSearchResults">
+				<div className="no_search_results">
 					<h2>No results for "{searchedUsername}"</h2>
 					<p>
 						The term you entered did not bring up any results. You may have

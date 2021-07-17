@@ -4,6 +4,7 @@ import Feed from "../../components/Feed";
 import SearchBar from "../../components/SearchBar";
 import SearchResults from "../../components/SearchResults";
 import Sidebar from "../../components/Sidebar";
+import Profile from "../../components/Profile";
 import WhatsHappening from "../../components/WhatsHappening";
 import "./styles.scss";
 
@@ -17,6 +18,7 @@ function MainLayout(props) {
 			<Sidebar />
 			{props.showFeed && <Feed />}
 			{props.showSearchResults && <SearchResults query={searchParams.q} />}
+			{props.showProfile && <Profile />}
 			<div className="rightSection">
 				<SearchBar />
 				<WhatsHappening />

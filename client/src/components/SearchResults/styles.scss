@@ -2,12 +2,12 @@ $primary-color: #1da1f2;
 $primary-color-light: #bfe2fc;
 $hover-color: #eef8ff;
 
-.searchResults {
+.search_results {
 	display: flex;
 	flex-direction: column;
 	border-right: 1px solid whitesmoke;
 
-	.navbar-items {
+	.navbar_items {
 		display: flex;
 		list-style-type: none;
 		justify-content: space-around;
@@ -32,12 +32,12 @@ $hover-color: #eef8ff;
 			border-bottom: 5px solid $primary-color;
 		}
 	}
-	.emptySpace {
+	.empty_space {
 		height: 0.7rem;
 		background-color: rgb(248, 248, 248);
 		border-bottom: 1px solid whitesmoke;
 	}
-	.noSearchResults {
+	.no_search_results {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
