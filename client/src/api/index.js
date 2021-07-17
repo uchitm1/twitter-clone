@@ -29,6 +29,14 @@ const fetchAllTweets = () => {
 	return api.get("/tweets");
 };
 
+const fetchTweetsBySearchedUsername = (searchedTerm) => {
+	return api.get("/tweets/search", {
+		params: {
+			q: searchedTerm,
+		},
+	});
+};
+
 const apis = {
 	createUser,
 	loginUser,
@@ -36,6 +44,7 @@ const apis = {
 	logoutUser,
 	createTweet,
 	fetchAllTweets,
+	fetchTweetsBySearchedUsername,
 };
 
 export default apis;

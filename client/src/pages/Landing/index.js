@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaTwitter } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./styles.scss";
 
 function Landing() {
+	useEffect(() => {
+		document.title = "Twitter. It's what's happening / Twitter";
+	}, []);
 	return (
 		<div className="landing">
 			<div className="coverImage">
