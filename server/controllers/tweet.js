@@ -19,7 +19,7 @@ const createTweet = async (req, res) => {
 };
 
 const fetchAllTweets = async (req, res) => {
-	const tweets = await Tweet.find({}).sort({ updatedAt: -1 });
+	const tweets = await Tweet.find({}).populate("user").sort({ updatedAt: -1 });
 	return res.status(200).json({
 		success: true,
 		tweets,
@@ -29,9 +29,14 @@ const fetchAllTweets = async (req, res) => {
 
 const fetchTweetsByUsername = async (req, res) => {
 	const username = req.params.username;
+	const user = await User.findOne({
+		username: username,
+	});
 	const tweets = await Tweet.find({
-		"user.username": username,
-	}).sort({ updatedAt: -1 });
+		user: user._id,
+	})
+		.populate("user")
+		.sort({ updatedAt: -1 });
 	return res.status(200).json({
 		success: true,
 		tweets,
@@ -41,9 +46,26 @@ const fetchTweetsByUsername = async (req, res) => {
 
 const fetchSearchResults = async (req, res) => {
 	const searchedTerm = req.query.q;
+	const user = await User.find(
+		{
+			username: new RegExp(searchedTerm),
+		},
+		{ _id: 1 }
+	);
+	if (!user) {
+		return res.status(200).json({
+			success: true,
+			message: "No search results found.",
+			tweets: [],
+			matchingAccounts: [],
+		});
+	}
 	const tweets = await Tweet.find({
-		"user.username": new RegExp(searchedTerm),
-	}).sort({ updatedAt: -1 });
+		user: { $in: user },
+	})
+		.populate("user")
+		.sort({ updatedAt: -1 });
+
 	const matchingAccounts = await User.find({
 		username: new RegExp(searchedTerm),
 	});

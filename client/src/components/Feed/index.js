@@ -30,7 +30,7 @@ function Feed() {
 
 	const handleSubmit = async () => {
 		const tweetInfo = {
-			user: loggedInUser,
+			user: loggedInUser._id,
 			content: tweet,
 		};
 		await apis
