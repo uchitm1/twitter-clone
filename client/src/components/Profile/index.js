@@ -25,6 +25,7 @@ function Profile() {
 	};
 
 	useEffect(() => {
+		document.title = `${loggedInUser.fullName} (@${loggedInUser.username}) / Twitter`;
 		getTweetsByUsername();
 	}, []);
 
@@ -99,9 +100,14 @@ function Profile() {
 					<li>Likes</li>
 				</ul>
 			</div>
-			{tweetsByUsername.map((tweet) => (
-				<Tweet key={tweet._id} tweet={tweet} />
-			))}
+			{tweetsByUsername.length === 0 ? (
+				<div className="no_tweets">
+					<h3>You haven't tweeted yet.</h3>
+					<p>When you post a Tweet, it'll show up here.</p>
+				</div>
+			) : (
+				tweetsByUsername.map((tweet) => <Tweet key={tweet._id} tweet={tweet} />)
+			)}
 		</div>
 	);
 }

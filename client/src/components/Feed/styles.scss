@@ -88,4 +88,22 @@ $hover-color: #eef8ff;
 		background-color: rgb(248, 248, 248);
 		border-bottom: 1px solid whitesmoke;
 	}
+	.loader {
+		height: 50vh;
+		img {
+			width: 40px;
+			height: 40px;
+		}
+	}
+	.empty_timeline {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin: 2rem;
+		text-align: center;
+		p {
+			margin-top: 0;
+			color: grey;
+		}
+	}
 }

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./styles.scss";
 import apis from "../../api";
 import Tweet from "../Tweet";
+import Loader from "../Loader";
 import { HiOutlineSparkles } from "react-icons/hi";
 import {
 	AiOutlinePicture,
@@ -14,14 +15,14 @@ import { UserContext } from "../../contexts/user";
 
 function Feed() {
 	const [tweet, setTweet] = useState("");
-	const [allTweets, setAllTweets] = useState([]);
+	const [allTweets, setAllTweets] = useState(null);
 	const { loggedInUser } = useContext(UserContext);
 
 	const isInvalid = tweet === "";
 
 	const getAllTweets = async () => {
 		await apis
-			.fetchAllTweets()
+			.fetchFollowingTweets(loggedInUser.following)
 			.then((res) => {
 				setAllTweets(res.data.tweets);
 			})
@@ -45,7 +46,7 @@ function Feed() {
 	useEffect(() => {
 		document.title = "Home / Twitter";
 		getAllTweets();
-	}, []);
+	}, [loggedInUser]);
 
 	return (
 		<div className="feed">
@@ -90,9 +91,19 @@ function Feed() {
 				</div>
 			</div>
 			<div className="emptySpace"></div>
-			{allTweets.map((tweet) => (
-				<Tweet key={tweet._id} tweet={tweet} />
-			))}
+			{!allTweets && <Loader />}
+			{allTweets && allTweets.length === 0 && (
+				<div className="empty_timeline">
+					<h3>What? No tweets yet?</h3>
+					<p>
+						This empty timeline won't be around for long. Start following people
+						and you'll see Tweets show up here.
+					</p>
+				</div>
+			)}
+			{allTweets &&
+				allTweets.length > 0 &&
+				allTweets.map((tweet) => <Tweet key={tweet._id} tweet={tweet} />)}
 		</div>
 	);
 }
