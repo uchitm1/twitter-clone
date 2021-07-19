@@ -18,8 +18,15 @@ const createTweet = async (req, res) => {
 	});
 };
 
-const fetchAllTweets = async (req, res) => {
-	const tweets = await Tweet.find({}).populate("user").sort({ updatedAt: -1 });
+const fetchFollowingTweets = async (req, res) => {
+	const { following } = req.query;
+	const tweets = await Tweet.find({
+		user: {
+			$in: following,
+		},
+	})
+		.populate("user")
+		.sort({ updatedAt: -1 });
 	return res.status(200).json({
 		success: true,
 		tweets,
@@ -79,7 +86,7 @@ const fetchSearchResults = async (req, res) => {
 
 module.exports = {
 	createTweet,
-	fetchAllTweets,
+	fetchFollowingTweets,
 	fetchTweetsByUsername,
 	fetchSearchResults,
 };

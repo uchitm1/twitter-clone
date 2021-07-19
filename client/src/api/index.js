@@ -25,8 +25,12 @@ const createTweet = (payload) => {
 	return api.post("/tweet/new", payload);
 };
 
-const fetchAllTweets = () => {
-	return api.get("/tweets");
+const fetchFollowingTweets = (following) => {
+	return api.get("/tweets", {
+		params: {
+			following: following,
+		},
+	});
 };
 
 const fetchTweetsByUsername = (username) => {
@@ -51,7 +55,7 @@ const apis = {
 	getLoggedInUser,
 	logoutUser,
 	createTweet,
-	fetchAllTweets,
+	fetchFollowingTweets,
 	fetchTweetsByUsername,
 	fetchSearchResults,
 	followUser,

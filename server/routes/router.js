@@ -8,7 +8,7 @@ const {
 } = require("../controllers/user");
 const {
 	createTweet,
-	fetchAllTweets,
+	fetchFollowingTweets,
 	fetchSearchResults,
 	fetchTweetsByUsername,
 } = require("../controllers/tweet");
@@ -70,7 +70,7 @@ router.post("/tweet/new", async (req, res) => {
 
 router.get("/tweets", async (req, res) => {
 	try {
-		await fetchAllTweets(req, res);
+		await fetchFollowingTweets(req, res);
 	} catch (err) {
 		return res.status(400).json({
 			errors: { body: "Could not fetch all tweets. " + err.message },
