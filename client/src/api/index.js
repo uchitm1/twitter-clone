@@ -41,6 +41,10 @@ const fetchSearchResults = (searchedTerm) => {
 	});
 };
 
+const followUser = (followerId, followingId) => {
+	return api.post(`/follow/${followerId}/${followingId}`);
+};
+
 const apis = {
 	createUser,
 	loginUser,
@@ -50,6 +54,7 @@ const apis = {
 	fetchAllTweets,
 	fetchTweetsByUsername,
 	fetchSearchResults,
+	followUser,
 };
 
 export default apis;

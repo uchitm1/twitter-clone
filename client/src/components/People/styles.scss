@@ -1,5 +1,6 @@
 $primary-color: #1da1f2;
 $primary-color-light: #bfe2fc;
+$primary-color-dark: #1692df;
 $hover-color: #e0f2ff;
 
 .people {
@@ -29,18 +30,28 @@ $hover-color: #e0f2ff;
 		display: flex;
 		justify-content: flex-end;
 		margin: 1rem;
-		button {
+		.following,
+		.follow {
 			border: 1px solid $primary-color;
-			color: $primary-color;
 			padding: 0.2rem 1rem;
 			font-size: 0.95rem;
 			font-weight: bold;
 			border-radius: 50px;
-			background-color: white;
 			cursor: pointer;
 		}
-		button:hover {
+		.follow {
+			color: $primary-color;
+			background-color: white;
+		}
+		.follow:hover {
 			background-color: $hover-color;
+		}
+		.following {
+			color: white;
+			background-color: $primary-color;
+		}
+		.following:hover {
+			background-color: $primary-color-dark;
 		}
 	}
 }

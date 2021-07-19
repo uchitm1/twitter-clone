@@ -84,10 +84,10 @@ function Profile() {
 				</div>
 				<div className="following_followers">
 					<p className="following">
-						<span>142</span> Following
+						<span>{loggedInUser.following.length}</span> Following
 					</p>
 					<p className="followers">
-						<span>128</span> Followers
+						<span>{loggedInUser.followers.length}</span> Followers
 					</p>
 				</div>
 			</div>

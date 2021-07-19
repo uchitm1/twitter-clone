@@ -1,10 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import apis from "../../api";
 import { UserContext } from "../../contexts/user";
 import "./styles.scss";
 
 function People(props) {
-	const { fullName, username, imageUrl } = props.account;
 	const { loggedInUser } = useContext(UserContext);
+	const { _id, fullName, username, imageUrl } = props.account;
+	const [follow, setFollow] = useState(loggedInUser.following.includes(_id));
+
+	const handleFollow = async () => {
+		await apis
+			.followUser(loggedInUser._id, _id)
+			.then((res) => {
+				if (res.data.success) {
+					setFollow(true);
+				}
+			})
+			.catch((err) => console.error(err));
+	};
+
+	const handleUnfollow = async () => {};
+
 	return (
 		<div className="people">
 			<img
@@ -19,7 +35,15 @@ function People(props) {
 			</div>
 			{loggedInUser.username !== username && (
 				<div className="follow_button">
-					<button>Follow</button>
+					{follow ? (
+						<button className="following" onClick={handleUnfollow}>
+							Following
+						</button>
+					) : (
+						<button className="follow" onClick={handleFollow}>
+							Follow
+						</button>
+					)}
 				</div>
 			)}
 		</div>
