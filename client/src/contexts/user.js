@@ -1,10 +1,11 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
 import apis from "../api";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 export const UserContext = createContext();
 
 const UserContextProvider = (props) => {
-	const [loggedInUser, setLoggedInUser] = useState({});
+	const [loggedInUser, setLoggedInUser] = useLocalStorage("loggedInUser", "");
 
 	const currentUser = async () => {
 		await apis
