@@ -9,6 +9,7 @@ import * as Routes from "../../constants/routes";
 import apis from "../../api";
 import Tweet from "../Tweet";
 import { Link } from "react-router-dom";
+import { format } from "date-fns";
 
 function Profile() {
 	const { loggedInUser } = useContext(UserContext);
@@ -60,17 +61,25 @@ function Profile() {
 				<p className="user_fullname">{loggedInUser.fullName}</p>
 				<p className="user_username">@{loggedInUser.username}</p>
 				<div className="user_location_dob_joined">
-					<div className="user_location">
-						<IoLocation />
-						<p>New Delhi, India</p>
-					</div>
-					<div className="user_birthday">
-						<FaBirthdayCake />
-						<p>Born January 01, 2000</p>
-					</div>
+					{loggedInUser.location && (
+						<div className="user_location">
+							<IoLocation />
+							<p>{loggedInUser.location}</p>
+						</div>
+					)}
+					{loggedInUser.birthday && (
+						<div className="user_birthday">
+							<FaBirthdayCake />
+							<p>
+								Born {format(new Date(loggedInUser.birthday), "MMMM dd, yyyy")}
+							</p>
+						</div>
+					)}
 					<div className="user_joining_date">
 						<BsCalendar />
-						<p>Joined April 2018</p>
+						<p>
+							Joined {format(new Date(loggedInUser.createdAt), "MMMM yyyy")}
+						</p>
 					</div>
 				</div>
 				<div className="following_followers">

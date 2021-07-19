@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../../contexts/user";
 import "./styles.scss";
 
 function People(props) {
 	const { fullName, username, imageUrl } = props.account;
+	const { loggedInUser } = useContext(UserContext);
 	return (
 		<div className="people">
 			<img
@@ -15,9 +17,11 @@ function People(props) {
 				<p className="user_fullname">{fullName}</p>
 				<p className="user_username">@{username}</p>
 			</div>
-			<div className="follow_button">
-				<button>Follow</button>
-			</div>
+			{loggedInUser.username !== username && (
+				<div className="follow_button">
+					<button>Follow</button>
+				</div>
+			)}
 		</div>
 	);
 }
