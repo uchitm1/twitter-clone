@@ -73,4 +73,20 @@ const logoutUser = async (req, res) => {
 	});
 };
 
-module.exports = { createUser, loginUser, currentUser, logoutUser };
+const followUser = async (req, res) => {
+	const { followerId, followingId } = req.params;
+	await User.updateOne(
+		{ _id: followerId },
+		{ $addToSet: { following: followingId } }
+	);
+	await User.updateOne(
+		{ _id: followingId },
+		{ $addToSet: { followers: followerId } }
+	);
+	return res.status(200).json({
+		success: true,
+		message: "Following user successfully",
+	});
+};
+
+module.exports = { createUser, loginUser, currentUser, logoutUser, followUser };

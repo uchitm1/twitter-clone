@@ -4,6 +4,7 @@ const {
 	loginUser,
 	currentUser,
 	logoutUser,
+	followUser,
 } = require("../controllers/user");
 const {
 	createTweet,
@@ -96,6 +97,18 @@ router.get("/tweets/:username", async (req, res) => {
 		return res.status(400).json({
 			errors: {
 				body: "Could not fetch tweets by requested username. " + err.message,
+			},
+		});
+	}
+});
+
+router.post("/follow/:followerId/:followingId", async (req, res) => {
+	try {
+		await followUser(req, res);
+	} catch (err) {
+		return res.status(400).json({
+			errors: {
+				body: "Could not follow user. " + err.message,
 			},
 		});
 	}
